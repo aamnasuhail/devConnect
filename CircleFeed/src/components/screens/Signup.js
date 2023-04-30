@@ -2,9 +2,9 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import axios from "../../helpers/axios";
 import { cloudinary } from "../../config";
-import Img1 from "../../assets/images/Img1.svg";
+import Img1 from "../../assets/images/main.svg";
 import { SnackbarContext } from "../../App";
-import BackDrop from '../utilityComponents/backdrop';
+import BackDrop from "../utilityComponents/backdrop";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -19,7 +19,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: "calc(100vh - 64px )",
+    height: "100vh",
     backgroundColor: "white",
   },
   ImgHolder: {
@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
   },
   paper: {
+    padding: theme.spacing(8, 1),
     margin: theme.spacing(8, 4),
     display: "flex",
     flexDirection: "column",
@@ -47,10 +48,10 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(3, 0, 3),
   },
 }));
 
@@ -132,7 +133,11 @@ const Signup = () => {
       .catch((err) => {
         console.log(err.response);
         setBackdropOpen(false);
-        handleSnackBar(err.response ? err.response.data.message : err, "error", 3000);
+        handleSnackBar(
+          err.response ? err.response.data.message : err,
+          "error",
+          3000
+        );
       });
   }
 
@@ -177,19 +182,19 @@ const Signup = () => {
       <CssBaseline />
       <Grid item xs={false} sm={4} md={6}>
         <div className={classes.ImgHolder}>
-          <img className="animated" src={Img1} alt="login" style={{ width: "100%" }} />
+          <img
+            className="animated"
+            src={Img1}
+            alt="login"
+            style={{ width: "100%" }}
+          />
         </div>
         <BackDrop backdropOpen={backdropOpen} />
       </Grid>
 
-      <Grid item md={2}>
-        <Typography component="h1" variant="h5">
-          Instagram
-        </Typography>
-        <i>Signup to access the posts of your folowers</i>
-      </Grid>
+      <Grid item md={1}></Grid>
 
-      <Grid item xs={12} sm={8} md={4} component={Paper} elevation={0} square>
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={0} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <PersonIcon />
@@ -247,8 +252,8 @@ const Signup = () => {
                     <Avatar alt="avatar" src={image} id="userpic" />
                   </div>
                 ) : (
-                    <Typography id="nophoto">No photo choosen</Typography>
-                  )}
+                  <Typography id="nophoto">No photo choosen</Typography>
+                )}
               </div>
 
               <div className="right">

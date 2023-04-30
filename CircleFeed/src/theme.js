@@ -9,7 +9,7 @@ const theme = createMuiTheme({
       main: "grey",
     },
     common: {
-      blackish: "#424242",
+      blackish: "#010210",
       whitish: "#f9f9f9",
       lightWhite: "#c2b6b626",
     },
