@@ -1,0 +1,37 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "It is an API for Instagram like application called Circle that helps to share daily life happenings",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "start-prod": "set NODE_ENV=production && node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Instagram",
+    "Instagram API",
+    "Instagram like",
+    "Instagram Clone",
+    "Instagram duplicate"
+  ],
+  "author": "Asjad Ezazi",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.3.5",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.11",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.4.17",
+    "openai": "^3.2.1"
+  },
+  "engines": {
+    "node": "12.20.0"
+  }
+}
