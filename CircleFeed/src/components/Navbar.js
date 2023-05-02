@@ -347,6 +347,15 @@ const Navbar = () => {
           key="1"
         >
           {" "}
+          <NavLink to="/">Explore</NavLink>{" "}
+        </Button>,
+        <Button
+          variant="text"
+          color="primary"
+          className={classes.MuiButton}
+          key="1"
+        >
+          {" "}
           <NavLink to="/profile">Profile</NavLink>{" "}
         </Button>,
         <Button

@@ -11,10 +11,10 @@ import Add from "@material-ui/icons/Add";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 500,
-    margin: "70px auto 20px",
+    maxWidth: 600,
+    margin: "100px auto 20px",
     [theme.breakpoints.down("sm")]: {
-      maxWidth: "98vw",
+      maxWidth: "95vw",
     },
   },
   blankscreen: {
@@ -85,8 +85,16 @@ const Home = () => {
         })
       ) : (
         <div className={classes.blankscreen}>
-          <Typography style={{ color: "grey", marginBottom: "10px" }}>No Posts Available</Typography>
-          <Button endIcon={<Add />} variant='outlined' color='primary' size='small' onClick={() => history.push("/createPost")}>
+          <Typography style={{ color: "grey", marginBottom: "10px" }}>
+            No Posts Available
+          </Typography>
+          <Button
+            endIcon={<Add />}
+            variant="outlined"
+            color="primary"
+            size="small"
+            onClick={() => history.push("/createPost")}
+          >
             Add Post
           </Button>
         </div>

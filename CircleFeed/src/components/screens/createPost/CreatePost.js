@@ -4,9 +4,33 @@ import { cloudinary } from "../../../config";
 import axios from "../../../helpers/axios";
 import M from "materialize-css";
 import { SnackbarContext } from "../../../App";
-import TextField from "@mui/material/TextField";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
-import Button from "@mui/material/Button";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: "50%",
+    borderRadius: "8px",
+    background: "white",
+    padding: "40px",
+    boxShadow: "0px 10px 20px 2px rgba(0, 0, 0, 0.25)",
+    margin: "100px auto 20px",
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "90vw",
+    },
+  },
+  heading: {
+    fontSize: "24px",
+    textAlign: "center",
+  },
+  blankscreen: {
+    display: "flex",
+    height: "calc(100vh - 100px)",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+}));
 
 const CreatePost = () => {
   const { handleSnackBar } = useContext(SnackbarContext);
@@ -16,7 +40,7 @@ const CreatePost = () => {
   });
   const [image, setImage] = useState("");
   const [publisedImageUrl, setPublishedImageUrl] = useState("");
-
+  const classes = useStyles();
   const InputValue = (e) => {
     const { name, value } = e.target;
     setData((preVal) => {
@@ -43,6 +67,7 @@ const CreatePost = () => {
       reader.readAsDataURL(event.target.files[0]);
     }
   };
+
   // posting data to database
   function post() {
     let data = {
@@ -57,14 +82,12 @@ const CreatePost = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         M.toast({
           html: res.data.message,
           classes: "#81c784 green lighten-2 rounded",
         });
       })
       .catch((err) => {
-        console.log(err.response);
         M.toast({
           html: err.response.data.error,
           classes: "#e57373 red lighten-2 rounded",
@@ -83,7 +106,6 @@ const CreatePost = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.error) {
           M.toast({
             html: data.error.message + "  and fields",
@@ -105,80 +127,85 @@ const CreatePost = () => {
   // submit the form
   const handleSubmit = (e) => {
     e.preventDefault();
-    // handleSnackBar('hahah Done yaar', 'success', 2000);
     postImage();
   };
 
   const { title, body } = data;
   return (
-    <div className="create-postcard">
-      <h2 id="heading">Create New Post</h2>
-      <form onSubmit={handleSubmit} className="post-form">
-        <div className="input-field col s6">
-          {/* <input
-                        value={title}
-                        name="title"
-                        onChange={InputValue}
-                        id="title"
-                        type="text"
-                        className="validate"
-                    /> */}
-          <TextField
-            id="standard-basic"
-            label="Title"
-            variant="standard"
-            value={title}
-            name="title"
-            onChange={InputValue}
-            // id="title"
-            type="text"
-            className="post-validate"
-          />
-          {/* <label htmlFor="title">Title</label> */}
-        </div>
-        <div className="input-field col s6">
-          {/* <input value={body} name="body" onChange={InputValue} id="body" type="text" className="validate" />
-                    <label htmlFor="body">Message</label> */}
-
-          <TextareaAutosize
-            value={body}
-            name="body"
-            onChange={InputValue}
-            id="body"
-            type="text"
-            className="validate"
-            placeholder="Write Your Message"
-            style={{ width: 300, height: 200 }}
-          />
-        </div>
-
-        <div className="file-field input-field">
-          <div className="btn upldbtn  #64b5f6 blue lighten-1">
-            <span>Upload photo</span>
+    <section className={classes.root}>
+      <h2 id="heading" className={classes.heading}>
+        Create New Post
+      </h2>
+      <form onSubmit={handleSubmit} className="form">
+        <div className="form-center">
+          <div className="form-row">
+            <label htmlFor="title" className="form-label">
+              Post Title
+            </label>
             <input
-              onChange={onImageChange}
-              type="file"
-              multiple
-              accept="image/*"
+              value={title}
+              onChange={InputValue}
+              id="title"
+              type="text"
+              name="title"
+              className="form-input"
             />
           </div>
-          {image ? (
-            <div className="avatar-preview">
-              <img id="imagePreview" src={image} className="" alt="avatar" />
-            </div>
-          ) : (
-            <span id="nophoto">No photo choosen</span>
-          )}
-        </div>
-        <Button className="post-btn" variant="contained" type="submit">
-          Create post{" "}
-        </Button>
 
-        {/* <button type="submit" className="btn waves-effect mt-3 waves-light #64b5f6 blue lighten-1">
-                    Create post{" "}
-                </button> */}
+          <div className="form-row">
+            <label htmlFor="body" className="form-label">
+              Post Description
+            </label>
+            <TextareaAutosize
+              value={body}
+              name="body"
+              onChange={InputValue}
+              id="body"
+              type="text"
+              className="form-textarea"
+              placeholder="Write more about your Post..."
+              style={{
+                width: "100%",
+                height: 200,
+                resize: "none",
+                fontFamily: "inherit",
+                color: "blue",
+              }}
+            />
+          </div>
+
+          <div>
+            <div className="form-row">
+              <label htmlFor="postInfo" className="form-label">
+                Upload Picture
+              </label>
+              <input
+                onChange={onImageChange}
+                type="file"
+                multiple
+                accept="image/*"
+                className="form-input"
+              />
+            </div>
+            {image ? (
+              <div className="image">
+                <img
+                  id="imagePreview"
+                  src={image}
+                  className="img-output"
+                  alt="avatar"
+                />
+              </div>
+            ) : (
+              <span id="nophoto">No photo choosen</span>
+            )}
+          </div>
+          <button className="btn btn-block" type="submit">
+            Create Post
+          </button>
+        </div>
       </form>
-    </div>
+    </section>
   );
 };
 
