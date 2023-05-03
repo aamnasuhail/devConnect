@@ -1,74 +1,80 @@
 .chatBot {
-    margin-top: 70px;
-    background-color: #000;
-    color: white;
-    height: 100vh;
+  margin-top: 80px;
+  background-color: #caccfb;
+  color: #6366f1;
+  height: 100vh;
 }
 .wrapper form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .app-logo {
-    display: block;
-    margin: 10px auto 20px auto;
-    max-width: 60px;
+  display: block;
+  margin: 10px auto 10px auto;
+  max-width: 60px;
+  padding: 10px;
 }
-
+.form-wrapper {
+  padding: 10px;
+}
 .wrapper form img {
-    max-width: 50px;
+  max-width: 50px;
+  padding: 10px;
 }
 
 .wrapper form input {
-    background-color: #000;
-    color: #61dafb;
-    border: 1px solid #005167;
-    font-size: 22px;
-    padding: 10px 15px;
-    flex: 1;
-    border-radius: 4px;
+  background-color: #fff;
+  color: #1a1b28;
+  border: 1px solid #6366f1;
+  font-size: 22px;
+  padding: 10px 15px;
+  flex: 1;
+  border-radius: 4px;
 }
 
 .wrapper form button {
-    border: 1px solid #000;
-    font-size: 22px;
-    padding: 10px 20px;
-    background-color: #fb61e1;
-    color: #000;
-    cursor: pointer;
-    border-radius: 4px;
+  border: 1px solid #000;
+  font-size: 22px;
+  padding: 10px 20px;
+  background-color: #fb61e1;
+  color: #000;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 .wrapper form button:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .response-area {
-    font-size: 20px;
-    max-width: 1100px;
-    display: block;
-    margin: 50px auto 0 auto;
+  font-size: 24px;
+  color: #323379;
+  max-width: 1200px;
+  display: block;
+  margin: 50px auto 0 auto;
 }
 
 .footer {
-    font-size: 34px;
-    letter-spacing: 4px;
-    margin: 50px 0 40px 0;
-    opacity: 0.5;
-    text-align: center;
+  font-size: 34px;
+  letter-spacing: 4px;
+  margin: 50px 0 40px 0;
+  opacity: 0.5;
+  text-align: center;
+  color: #000;
 }
 
 .cg-logo.loading {
-    animation: rotation 2s infinite linear;
+  animation: rotation 2s infinite linear;
 }
 
 @keyframes rotation {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(359deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }

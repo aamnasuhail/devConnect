@@ -9,4 +9,4 @@ export { default as MyFollowingPosts } from "./screens/MyFollowingPosts/myfollow
 export { default as ResetPassword } from "./screens/resetPassword";
 export { default as SetNewPassword } from "./screens/setNewPassword";
 export { default as Comment } from "./screens/Comment";
-export { default as Chatbot } from "./screens/chatbot/Chatbot";
+export { default as Chatbot } from "./screens/chatbot/ChatGPT";
