@@ -5,7 +5,7 @@ import { UserContext } from "../../../App";
 import { useHistory } from "react-router-dom";
 import commentIcon from "../../../assets/icons/commentIcon.png";
 import { RWebShare } from "react-web-share";
-
+import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import {
   Menu,
   MenuItem,
@@ -104,7 +104,7 @@ function getParameterByName(name, url = window.location.href) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-const Post = ({ item, removepost }) => {
+const Post = ({ item, removepost, createdAt }) => {
   const [likes, setLikes] = useState(item.likes);
   const [comments, setComments] = useState(item.comments);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -122,9 +122,9 @@ const Post = ({ item, removepost }) => {
 
   const link = window.location.host + "/?id=" + item._id;
 
-  const handleModalOpen = () => {
-    setOpenModal(true);
-  };
+  // const handleModalOpen = () => {
+  //   setOpenModal(true);
+  // };
 
   const handleModalClose = () => {
     setOpenModal(false);
@@ -148,7 +148,6 @@ const Post = ({ item, removepost }) => {
         },
       })
       .then((res) => {
-        console.log(res);
         setLikes(res.data.likes);
       })
       .catch((err) => {
@@ -166,7 +165,6 @@ const Post = ({ item, removepost }) => {
         },
       })
       .then((res) => {
-        console.log(res);
         setLikes(res.data.likes);
       })
       .catch((err) => {
@@ -213,7 +211,7 @@ const Post = ({ item, removepost }) => {
 
   //function to delete post by owner of post
   const deletePost = () => {
-    window.confirm("Are u sure u want to delete");
+    window.confirm("Are you sure you want to delete this post?");
     axios
       .delete(`/deletepost/${item._id}`, {
         headers: {
@@ -240,6 +238,11 @@ const Post = ({ item, removepost }) => {
   };
 
   const { pic, name } = item.postedBy;
+  const currentDate = new Date(createdAt).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 
   return (
     <Card className={classes.card}>
@@ -264,7 +267,7 @@ const Post = ({ item, removepost }) => {
           </IconButton>
         }
         title={name}
-        subheader="September 14, 2016"
+        subheader={currentDate}
       />
       <Menu
         id="simple-menu"
@@ -287,6 +290,13 @@ const Post = ({ item, removepost }) => {
             <ListItemText primary="Share" />{" "}
           </MenuItem>
         </RWebShare>
+
+        <MenuItem onClick={deletePost}>
+          <ListItemIcon>
+            <DeleteOutlineIcon />
+          </ListItemIcon>
+          <ListItemText primary="Delete Post" />
+        </MenuItem>
 
         <MenuItem onClick={handleProfile}>
           <ListItemIcon>
@@ -521,7 +531,11 @@ const Post = ({ item, removepost }) => {
                       id="sendicon"
                     >
                       {" "}
-                      <SendIcon className={classes.sendIcon} />{" "}
+                      {/* WHY NOT WORKING HERE? */}
+                      <SendIcon
+                        onClick={makeComment}
+                        className={classes.sendIcon}
+                      />{" "}
                     </div>
                   </form>
                 </div>

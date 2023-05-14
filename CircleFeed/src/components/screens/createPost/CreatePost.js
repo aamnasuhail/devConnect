@@ -1,11 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./style.css";
 import { cloudinary } from "../../../config";
 import axios from "../../../helpers/axios";
-import M from "materialize-css";
-import { SnackbarContext } from "../../../App";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import { makeStyles } from "@material-ui/core/styles";
+import { SnackbarContext } from "../../../App";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CreatePost = () => {
   const { handleSnackBar } = useContext(SnackbarContext);
+
   const [data, setData] = useState({
     title: "",
     body: "",
@@ -55,6 +55,10 @@ const CreatePost = () => {
   useEffect(() => {
     if (publisedImageUrl) {
       post();
+      setData({
+        title: "",
+        body: "",
+      });
     }
   }, [publisedImageUrl]);
 
@@ -75,6 +79,7 @@ const CreatePost = () => {
       body,
       pic: publisedImageUrl,
     };
+
     axios
       .post("/createpost", data, {
         headers: {
@@ -82,16 +87,10 @@ const CreatePost = () => {
         },
       })
       .then((res) => {
-        M.toast({
-          html: res.data.message,
-          classes: "#81c784 green lighten-2 rounded",
-        });
+        handleSnackBar(res.data.message, "success", 1000);
       })
       .catch((err) => {
-        M.toast({
-          html: err.response.data.error,
-          classes: "#e57373 red lighten-2 rounded",
-        });
+        handleSnackBar(err.response.data.error, "error", 1000);
       });
   }
   // posting Image to cloudinary
@@ -107,20 +106,18 @@ const CreatePost = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          M.toast({
-            html: data.error.message + "  and fields",
-            classes: "#c62828 red darken-3 rounded",
-          });
+          handleSnackBar(
+            `All fields are required. So, Please fill them.`,
+            "error",
+            1000
+          );
           return;
         } else {
           setPublishedImageUrl(data.secure_url);
         }
       })
       .catch((err) => {
-        M.toast({
-          html: err + ", Internet DisConnected",
-          classes: "#e57373 red lighten-2 rounded",
-        });
+        handleSnackBar(`${err}, Internet DisConnected`, "error", 1000);
       });
   };
 
@@ -128,6 +125,8 @@ const CreatePost = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     postImage();
+    setImage("");
+    setPublishedImageUrl("");
   };
 
   const { title, body } = data;
@@ -149,6 +148,7 @@ const CreatePost = () => {
               type="text"
               name="title"
               className="form-input"
+              placeholder="What is on your mind..."
             />
           </div>
 
@@ -169,7 +169,6 @@ const CreatePost = () => {
                 height: 200,
                 resize: "none",
                 fontFamily: "inherit",
-                color: "blue",
               }}
             />
           </div>

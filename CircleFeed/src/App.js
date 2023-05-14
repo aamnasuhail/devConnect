@@ -31,7 +31,6 @@ import SnackBar from "./components/utilityComponents/snackbar";
 import { reducer, initialState } from "./reducers/userReducer";
 import theme from "./theme";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { Chat } from "@material-ui/icons";
 
 export const UserContext = createContext();
 export const SnackbarContext = createContext();

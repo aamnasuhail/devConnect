@@ -35,7 +35,6 @@ const Profile = () => {
   const [image, setImage] = useState(state ? state.pic : null);
   const [publisedImageUrl, setPublishedImageUrl] = useState("");
   const [picChange, setPicChange] = useState(false);
-  console.log(state, "state");
   const classes = useStyles();
 
   const myPosts = () => {
@@ -46,7 +45,6 @@ const Profile = () => {
         },
       })
       .then((res) => {
-        console.log(res.data.mypost);
         setPics(res.data.mypost);
       })
       .catch((err) => {
@@ -78,7 +76,6 @@ const Profile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.error) {
           handleSnackBar(data.error.message + "  and fields", "error", 3000);
           return;
@@ -93,7 +90,6 @@ const Profile = () => {
 
   // Function to set updated pic url to database
   const updatePicToDB = () => {
-    console.log("going to update");
     let data = { pic: publisedImageUrl };
     axios
       .put("/updatepic", data, {
@@ -102,7 +98,6 @@ const Profile = () => {
         },
       })
       .then((res) => {
-        console.log(res, "updated pic");
         localStorage.setItem(
           "user",
           JSON.stringify({ ...state, pic: res.data.result.pic })

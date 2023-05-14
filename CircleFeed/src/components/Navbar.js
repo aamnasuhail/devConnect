@@ -16,7 +16,6 @@ import {
   AppBar,
   Button,
   Divider,
-  Typography,
   Toolbar,
   MenuItem,
   List,
@@ -344,7 +343,7 @@ const Navbar = () => {
           variant="text"
           color="primary"
           className={classes.MuiButton}
-          key="1"
+          key="12"
         >
           {" "}
           <NavLink to="/">Explore</NavLink>{" "}
@@ -353,7 +352,7 @@ const Navbar = () => {
           variant="text"
           color="primary"
           className={classes.MuiButton}
-          key="1"
+          key="14"
         >
           {" "}
           <NavLink to="/profile">Profile</NavLink>{" "}

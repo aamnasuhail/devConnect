@@ -34,7 +34,6 @@ const Home = () => {
   const history = useHistory();
 
   useEffect(() => {
-    console.log("Home component,  state changed");
     if (state && Object.keys(state).length) {
       fetchAllPosts();
     }
@@ -81,7 +80,14 @@ const Home = () => {
 
       {data.length ? (
         data?.map((item) => {
-          return <Post key={item._id} item={item} removepost={removePost} />;
+          return (
+            <Post
+              key={item._id}
+              item={item}
+              removepost={removePost}
+              createdAt={item.createdAt}
+            />
+          );
         })
       ) : (
         <div className={classes.blankscreen}>

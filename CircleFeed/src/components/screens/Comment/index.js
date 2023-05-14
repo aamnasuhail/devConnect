@@ -278,7 +278,7 @@ const Comment = () => {
             id="sendicon"
           >
             {" "}
-            <SendIcon className={classes.sendIcon} />{" "}
+            <SendIcon className={classes.sendIcon} onClick={makeComment} />{" "}
           </div>
         </form>
       </div>

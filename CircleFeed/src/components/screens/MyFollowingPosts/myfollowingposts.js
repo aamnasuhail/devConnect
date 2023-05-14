@@ -39,7 +39,6 @@ const MyFollowingPosts = (props) => {
         },
       })
       .then((res) => {
-        console.log(typeof res.data, res.data);
         if (res.data.posts !== "undefined") {
           setData(res.data.posts);
         }

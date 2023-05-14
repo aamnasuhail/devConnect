@@ -1,10 +1,46 @@
 .chatBot {
-  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: #caccfb;
   color: #6366f1;
   height: 100vh;
 }
-.wrapper form {
+.chat-head {
+  text-align: center;
+}
+.message-history {
+  margin-top: 100px;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.gpt-para {
+  display: block;
+  background-color: #fff;
+  max-width: 70%;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.gpt-para span {
+  margin: 5px;
+}
+
+.gpt-para span:first-child {
+  margin-right: 0;
+}
+
+.user_msg {
+  text-align: right;
+  margin-left: 30%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.gpt-form-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,35 +53,35 @@
   max-width: 60px;
   padding: 10px;
 }
-.form-wrapper {
-  padding: 10px;
+
+.input-wrapper {
+  padding: 15px 20px;
 }
-.wrapper form img {
+.input-wrapper form img {
   max-width: 50px;
-  padding: 10px;
 }
 
-.wrapper form input {
+.input-wrapper form input {
   background-color: #fff;
   color: #1a1b28;
   border: 1px solid #6366f1;
   font-size: 22px;
   padding: 10px 15px;
   flex: 1;
-  border-radius: 4px;
+  border-radius: 9px;
 }
 
-.wrapper form button {
+.input-wrapper form button {
   border: 1px solid #000;
   font-size: 22px;
-  padding: 10px 20px;
+  padding: 10px 30px;
   background-color: #fb61e1;
   color: #000;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 9px;
 }
 
-.wrapper form button:hover {
+.input-wrapper form button:hover {
   opacity: 0.8;
 }
 

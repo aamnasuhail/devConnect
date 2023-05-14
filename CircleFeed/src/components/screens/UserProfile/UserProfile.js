@@ -37,7 +37,6 @@ const UserProfile = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setUserProfile(res.data);
       })
       .catch((err) => {
@@ -58,7 +57,6 @@ const UserProfile = () => {
         }
       )
       .then((res) => {
-        console.log(res);
         let { followers, following } = res.data;
         dispatch({ type: "UPDATE", payload: { followers, following } });
         localStorage.setItem("user", JSON.stringify(res.data));
@@ -92,7 +90,6 @@ const UserProfile = () => {
         }
       )
       .then((res) => {
-        console.log(res);
         let { followers, following } = res.data;
         dispatch({ type: "UPDATE", payload: { followers, following } });
         localStorage.setItem("user", JSON.stringify(res.data));
