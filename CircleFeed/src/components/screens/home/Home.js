@@ -39,7 +39,7 @@ const Home = () => {
     }
   }, [state]);
 
-  //functio to fetch all posts
+  //function to fetch all posts
   const fetchAllPosts = () => {
     setIsPostsLoading(true);
     axios

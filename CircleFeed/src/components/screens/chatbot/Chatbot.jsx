@@ -47,7 +47,8 @@ const Chatbot = () => {
       <div className="message-history">
         {chats.length === 0 ? (
           <h2 className="chat-head">
-            I am Devian, AI Code Assistant. Ask me anything
+            Hello, I am Devian, your personal AI code assistant, created by
+            Aamna and Asjad. I'm here to help you with anything.
           </h2>
         ) : null}
         <section>

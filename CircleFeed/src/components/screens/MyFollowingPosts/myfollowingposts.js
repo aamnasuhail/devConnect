@@ -60,7 +60,7 @@ const MyFollowingPosts = (props) => {
         </Alert>
       ) : (
         data.map((item) => {
-          return <Post key={item._id} item={item} />;
+          return <Post key={item._id} item={item} createdAt={item.createdAt} />;
         })
       )}
     </div>

@@ -23,7 +23,7 @@ const openai = new OpenAIApi(configuration);
 router.post("/chat", async (req, res) => {
   try {
     const { chats } = req.body;
-    console.log(chats);
+
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
